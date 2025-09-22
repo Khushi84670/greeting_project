@@ -1,38 +1,249 @@
+.delete-text-btn {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    width: 22px;
+    height: 22px;
+    border: none;
+    background: rgba(0,0,0,0.15);
+    color: #d32f2f;
+    font-size: 1.2em;
+    font-weight: bold;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.85;
+    transition: background 0.2s, color 0.2s;
+}
+.delete-text-btn:hover {
+    background: #fff;
+    color: #b71c1c;
+    opacity: 1;
+}
+#text-controls {
+    background: #f7fafd;
+    border: 1.5px solid #e0e6ed;
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    padding: 1rem 0.8rem 0.7rem 0.8rem;
+    margin-bottom: 1.2rem;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.7em 1em;
+    transition: box-shadow 0.2s;
+}
+
+#text-controls label {
+    margin-bottom: 0;
+    font-size: 1em;
+}
+
+#fontSelect, #fontSizeInput, #fontColorInput {
+    border-radius: 5px;
+    border: 1px solid #c0c7d1;
+    padding: 0.35em 0.6em;
+    font-size: 1em;
+    background: #fff;
+    margin-top: 0.2em;
+    margin-bottom: 0.2em;
+    outline: none;
+    transition: border 0.2s;
+}
+#fontSelect:focus, #fontSizeInput:focus, #fontColorInput:focus {
+    border: 1.5px solid #0078d7;
+}
+
+.edit-panel h2 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 1.1rem;
+    color: #0078d7;
+    letter-spacing: 0.5px;
+}
+
+.edit-panel {
+    min-width: 260px;
+    max-width: 340px;
+    width: 100%;
+    align-items: stretch;
+    box-sizing: border-box;
+    transition: box-shadow 0.2s;
+}
+
+@media (max-width: 900px) {
+    .main-layout {
+        flex-direction: column;
+        align-items: center;
+        gap: 2.5rem;
+        padding: 2vh 1vw;
+    }
+    .edit-panel {
+        min-width: 200px;
+        max-width: 98vw;
+        width: 100%;
+    }
+    .canvas-area {
+        width: 100vw;
+        max-width: 350px;
+    }
+}
+.edit-panel label {
+    display: inline-block;
+    margin-bottom: 0.3em;
+}
 body {
     background: #f0f4f8;
     font-family: Arial, sans-serif;
+    margin: 0;
+    height: 100vh;
+}
+
+.main-layout {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     height: 100vh;
-    margin: 0;
+    gap: 2rem;
+    padding-top: 3vh;
 }
 
-.container {
+.canvas-area {
     background: #fff;
-    padding: 2rem 3rem;
     border-radius: 10px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    text-align: center;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-input[type="text"] {
-    padding: 0.5rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-right: 0.5rem;
+
+.carousel {
+    position: relative;
+    width: 270px;
+    height: 480px;
+    background: #eaeaea;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-button {
-    padding: 0.5rem 1rem;
+#canvas-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    pointer-events: none;
+}
+.draggable-text {
+    pointer-events: auto;
+}
+}
+
+.swiper {
+    width: 100%;
+    height: 100%;
+}
+.swiper-slide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+}
+.swiper-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+#carousel-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+    z-index: 1;
+}
+
+#canvas-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+}
+.draggable-text {
+    pointer-events: auto;
+}
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.3);
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.carousel-btn.left {
+    left: 10px;
+}
+.carousel-btn.right {
+    right: 10px;
+}
+
+.edit-panel {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    padding: 2rem 1.5rem;
+    min-width: 220px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.edit-panel button {
+    padding: 0.5rem 1.2rem;
     border: none;
     background: #0078d7;
     color: #fff;
     border-radius: 5px;
     cursor: pointer;
     font-size: 1rem;
+    margin-bottom: 0.5rem;
+}
+.edit-panel button:hover {
+    background: #005fa3;
 }
 
-button:hover {
-    background: #005fa3;
+#fontSelect {
+    width: 100%;
+    padding: 0.4rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
 }

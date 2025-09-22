@@ -5,13 +5,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Greeting Project</title>
     <link rel="stylesheet" href="style.css">
+    <!-- Swiper.js CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper@11/swiper-bundle.min.css" />
+    <!-- Google Fonts for font options -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700|Lobster|Pacifico|Oswald|Montserrat|Indie+Flower|Bebas+Neue|Dancing+Script|Fira+Mono|Caveat|Merriweather&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <h1 id="greeting">Hello, World!</h1>
-        <input type="text" id="nameInput" placeholder="Enter your name">
-        <button onclick="updateGreeting()">Greet Me</button>
+    <div class="main-layout">
+        <div class="canvas-area">
+            <div class="carousel">
+                <div id="canvas-overlay"></div>
+                <div class="swiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide"><img src="img1.jpg" alt="Greeting Card 1" /></div>
+                        <div class="swiper-slide"><img src="img2.jpg" alt="Greeting Card 2" /></div>
+                        <div class="swiper-slide"><img src="img3.jpg" alt="Greeting Card 3" /></div>
+                    </div>
+                </div>
+                <button class="carousel-btn left" id="carouselPrevBtn">&#8592;</button>
+                <button class="carousel-btn right" id="carouselNextBtn">&#8594;</button>
+            </div>
+        </div>
+        <div class="edit-panel">
+            <h2>Editing</h2>
+            <button onclick="showAddText()">Add Text</button>
+            <div id="text-controls" style="display:none; margin-bottom:1rem;">
+                <label style="font-size:0.95em;">Font:
+                    <select id="fontSelect" >
+                        <option value="Roboto, sans-serif">Roboto</option>
+                        <option value="Lobster, cursive">Lobster</option>
+                        <option value="Pacifico, cursive">Pacifico</option>
+                        <option value="Oswald, sans-serif">Oswald</option>
+                        <option value="Montserrat, sans-serif">Montserrat</option>
+                        <option value="Indie Flower, cursive">Indie Flower</option>
+                        <option value="Bebas Neue, cursive">Bebas Neue</option>
+                        <option value="Dancing Script, cursive">Dancing Script</option>
+                        <option value="Fira Mono, monospace">Fira Mono</option>
+                        <option value="Caveat, cursive">Caveat</option>
+                        <option value="Merriweather, serif">Merriweather</option>
+                    </select>
+                </label>
+                <label style="font-size:0.95em; margin-left:0.7em;">Size:
+                    <input type="number" id="fontSizeInput" min="10" max="100" value="24" style="width:50px;">
+                </label>
+                <label style="font-size:0.95em; margin-left:0.7em;">Color:
+                    <input type="color" id="fontColorInput" value="#ffffff">
+                </label>
+            </div>
+            <button onclick="showAddImage()">Add Images</button>
+        </div>
     </div>
+    <!-- Swiper.js -->
+    <script src="https://unpkg.com/swiper@11/swiper-bundle.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
